@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  will-change: transform;
+  max-height: inherit;
+}
+.headerCover {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 21px;
+}

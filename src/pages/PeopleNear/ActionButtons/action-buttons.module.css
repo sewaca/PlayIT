@@ -1,0 +1,9 @@
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.actionButton {
+	padding: 4px;
+	width: 72px;
+}

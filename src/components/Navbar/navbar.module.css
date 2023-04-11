@@ -1,0 +1,20 @@
+.navbar {
+	display: flex;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	align-items: center;
+	box-shadow: inset 0 0 0 1px #fff, inset 0 0 0 2px #dbdbdb;
+	background: #bfbfbf;
+	padding: 6px 6px 5px 6px;
+	width: 100%;
+	height: 40px;
+	gap: 10px;
+}
+.button {
+	width: 29px;
+	height: 29px;
+}
+.bigButton {
+	width: 25.27%;
+}

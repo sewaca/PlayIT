@@ -1,0 +1,40 @@
+.container {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+.scrollable {
+  padding-left: 10px;
+  padding-right: 30px;
+}
+.scrollbar {
+  position: absolute;
+  width: 16px;
+  right: 2px;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+.scrollButton {
+  width: 16px;
+  height: 16px;
+}
+.track {
+  height: calc(100% - 32px);
+  background-color: #9f9f9f;
+  position: relative;
+}
+.thumb {
+  position: absolute;
+  background: #bfbfbf;
+  box-shadow: inset -1px -1px 0px #808080, inset 1px 1px 0px #dbdbdb,
+    inset -2px -2px 0px #808080, inset 2px 2px 0px #ffffff;
+  width: 100%;
+}

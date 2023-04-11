@@ -1,0 +1,7 @@
+:root {
+  --gray-background: #bfbfbf;
+  --violet-background: #b577da;
+  --windows-shadow: inset -1px -1px 0px #000000, inset 1px 1px 0px #dbdbdb, inset -2px -2px 0px #808080, inset 2px 2px 0px #ffffff;
+  --windows-shadow-pressed: inset 1px 1px 0px #dbdbdb,
+    inset -1px -1px 0px #000000;
+}

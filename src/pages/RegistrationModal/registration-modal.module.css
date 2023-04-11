@@ -1,0 +1,31 @@
+.regModal {
+  min-width: 285px;
+}
+.step1 {
+  top: 9vh;
+  left: 3vw;
+  text-align: center;
+}
+.step2 {
+  top: 18vh;
+  left: 5vw;
+}
+.step2 .container {
+  padding: 10px 20px 13px 20px;
+}
+.step2 .continueButton {
+  margin: 14px auto 0 auto;
+}
+.step3 {
+  top: 27vh;
+  left: 7vw;
+}
+.step3 .container {
+  padding: 10px 16px 13px 16px;
+}
+.step3 .input {
+  margin-bottom: 14px;
+}
+.step3 .button {
+  margin: 0 auto;
+}

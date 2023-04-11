@@ -1,0 +1,21 @@
+.modal {
+  top: 3.18021vh;
+  left: 3.61111vw;
+  min-width: 285px;
+}
+.content {
+  padding: 7px 13px 13px 13px;
+}
+.aboutme {
+  margin-bottom: 10px;
+  color: #525252;
+}
+.additionalField {
+  background: #dfdfdf;
+  padding: 8px 10px;
+  color: #525252;
+}
+.additionalField .title {
+  margin-right: 5px;
+  color: #000000;
+}

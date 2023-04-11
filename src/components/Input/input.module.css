@@ -1,0 +1,36 @@
+.label {
+	display: flex;
+	flex-direction: column;
+	transition: color 0.3s;
+}
+.labelText {
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+.input[type=text],
+.input[type=number] {
+	outline: none;
+	border: 0;
+	box-shadow: inset -1px -1px 0px #ffffff, inset 1px 1px 0px #808080, inset -2px -2px 0px #dbdbdb, inset 2px 2px 0px #000000;
+	background: #ffffff;
+	padding: 7px 6px;
+}
+.input::-moz-placeholder {
+	color: #525252;
+	font-family: inherit;
+}
+.input::placeholder {
+	color: #525252;
+	font-family: inherit;
+}
+.fileWrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.error {
+	color: #900;
+}
+span.error {
+	margin-top: 4px;
+}

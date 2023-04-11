@@ -1,0 +1,10 @@
+.modal {
+  top: 6vh;
+  left: 50vw;
+  transform: translateX(calc(-50%));
+  transform-origin: center bottom;
+  width: 250px;
+}
+.content {
+  padding: 16px 18px 13px 18px;
+}

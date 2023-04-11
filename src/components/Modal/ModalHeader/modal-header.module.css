@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  background: #b577da;
+  padding: 2px 2px 2px 4px;
+  font-size: 11px;
+}
+.title {
+  color: #fff;
+  pointer-events: none;
+  user-select: none;
+  display: block;
+  margin-right: auto;
+}
+.subtitle {
+  font-size: 11px;
+  color: #ffffff;
+  margin-right: 12px;
+}
+.closeButton {
+  z-index: 1;
+}
+.inactiveHeader {
+  background: linear-gradient(90deg, #7b7b7b 0%, #adadad 100%);
+}

@@ -1,0 +1,19 @@
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: box-shadow 0.16s;
+	border: 0;
+	border-radius: 0;
+	box-shadow: var(--windows-shadow);
+	background-color: var(--gray-background);
+}
+.button:active {
+	box-shadow: var(--windows-shadow-pressed);
+}
+.padding {
+	padding: 6px 16px;
+}
+.withBorder {
+	border: 1px solid #000;
+}

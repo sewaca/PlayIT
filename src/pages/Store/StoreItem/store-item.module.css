@@ -1,0 +1,33 @@
+.item {
+  display: flex;
+  align-items: center;
+  box-shadow: inset -1px -1px 0px #000000, inset 1px 1px 0px #dbdbdb, inset -2px -2px 0px #808080, inset 2px 2px 0px #ffffff;
+  padding: 8px 16px 8px 8px;
+}
+.item img {
+  width: 71px;
+  height: 71px;
+  display: block;
+  margin-right: 16px;
+}
+.item .info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.item .title {
+  font-size: 12px;
+}
+.item .infoBottom {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+.item .description {
+  font-size: 8px;
+  line-height: 8px;
+  color: #3c3c3c;
+}
+.item .button {
+  padding: 3px 11px;
+}

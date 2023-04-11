@@ -1,0 +1,14 @@
+.modal {
+	top: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: min(330px, 95vw);
+	max-height: calc(100vh - 100px);
+}
+.content {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 13px;
+	height: 100%;
+	gap: 8px;
+}
