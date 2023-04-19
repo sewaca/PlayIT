@@ -26,7 +26,13 @@ export default function ModalHeader({
     >
       {title && <span className={styles.title}>{title}</span>}
       {subtitle && <span className={styles.subtitle}>{subtitle}</span>}
-      <CloseButton className={styles.closeButton} onClick={onClose} />
+      <CloseButton
+        className={styles.closeButton}
+        onClick={(e: MouseEvent) => {
+          e.stopPropagation();
+          onClose();
+        }}
+      />
     </header>
   );
 }

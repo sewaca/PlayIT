@@ -97,7 +97,7 @@ export default function ScrollableContent({
 
       viewport = el.clientHeight / el.scrollHeight;
       if (thumb.current) thumb.current.style.height = viewport * 100 + "%";
-      
+
       window.addEventListener("mousemove", handleThumbMouseMove);
       window.addEventListener("touchmove", handleThumbTouchMove);
       window.addEventListener("mouseup", endThumbTouch);

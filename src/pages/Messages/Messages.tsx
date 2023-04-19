@@ -4,8 +4,8 @@ import { setPage } from "~/store";
 import styles from "./messages.module.css";
 import { Modal } from "~/components";
 import Message from "./Message/";
-import { useContext } from 'react';
-import { ClosePageContext } from "~/context";
+import { useContext } from "react";
+import { ClosePageContext, OpenPageContext } from "~/context";
 
 interface MessagesProps {}
 
@@ -25,11 +25,14 @@ const finishedDialogs = [...Array(8)].map(() => ({
 }));
 
 export default function Messages({}: MessagesProps) {
+  const openPage = useContext(OpenPageContext);
   const closePage = useContext(ClosePageContext);
+  
   return (
     <Modal
       title="Диалоги"
       onClose={() => closePage("messages")}
+      refocus={() => openPage({ page: "messages" })}
       className={styles.messagesModal}
     >
       <div className={styles.content}>

@@ -29,17 +29,7 @@ export default function DisplayRoute({ page, userId }: DisplayRouteProps) {
       ) : page.page === "profile" ? (
         <Profile id={page.id || userId || 0} />
       ) : page.page === "peopleNear" ? (
-        <>
-          <PeopleNear />
-          {page.openedProfile && (
-            <Profile
-              onClose={() =>
-                openPage({ page: "peopleNear", openedProfile: undefined })
-              }
-              id={page.openedProfile}
-            />
-          )}
-        </>
+        <PeopleNear />
       ) : page.page === "missions" ? (
         <Missions />
       ) : page.page === "store" ? (

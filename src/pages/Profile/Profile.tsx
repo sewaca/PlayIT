@@ -10,21 +10,21 @@ import { getUser, GetUserResponse } from "~/services/backend/";
 import ProfileProgress from "./ProfileProgress";
 import ProfileMainInfo from "./ProfileMainInfo";
 import { useContext } from "react";
-import { ClosePageContext } from "~/context";
+import { ClosePageContext, OpenPageContext } from "~/context";
 
 interface ProfileProps {
   id: number;
-  onClose?: Function;
 }
 
-export default function Profile({ id, onClose = undefined }: ProfileProps) {
+export default function Profile({ id }: ProfileProps) {
   if (!id) return <></>;
 
+  const userId = useSelector<Store, number>((store) => store.user.id || 0);
   const [loading, setLoading] = useState(true); // Идет ли загрузка
   const [data, setData] = useState<GetUserResponse | null>(null); // загруженные данные
 
   const closePage = useContext(ClosePageContext);
-  const userId = useSelector<Store, number>((store) => store.user.id || 0);
+  const openPage = useContext(OpenPageContext);
 
   // При монтировании получаем инфу о пользователе
   useEffect(() => {
@@ -38,7 +38,8 @@ export default function Profile({ id, onClose = undefined }: ProfileProps) {
     <Modal
       title="Профиль"
       className={styles.modal}
-      onClose={onClose || (() => closePage("profile"))}
+      onClose={() => closePage("profile")}
+      refocus={() => openPage({ page: "profile" })}
     >
       <div className={styles.content}>
         {loading ? (

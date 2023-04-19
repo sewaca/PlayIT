@@ -1,7 +1,7 @@
 import styles from "./action-buttons.module.css";
 import { Button } from "~/components";
-import rejectIcon from "~/assets/icons/reject_mission.svg";
-import acceptIcon from "~/assets/icons/accept_mission.svg";
+import rejectIcon from "~/assets/icons/missions__page/reject.svg";
+import acceptIcon from "~/assets/icons/missions__page/accept.svg";
 
 interface ActionButtonsProps {
   reject: Function;

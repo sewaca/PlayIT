@@ -1,0 +1,32 @@
+.navbarButton {
+  padding: 6px;
+  height: 29px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .icon {
+    width: 21px;
+    img {
+      display: block;
+      height: 100%;
+      margin: auto;
+    }
+  }
+  span {
+    display: block;
+    margin-left: 8px;
+    @media (max-width: 650px) {
+      display: none;
+    }
+  }
+  max-width: 150px;
+  @media (min-width: 1095px) {
+    width: 150px;
+  }
+  &.fullWidth {
+    width: 150px;
+    span {
+      display: block;
+    }
+  }
+}

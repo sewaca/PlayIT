@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Modal } from "~/components";
 import styles from "./store.module.css";
 import StoreItem from "./StoreItem/StoreItem";
-import { useDispatch } from "react-redux";
-import { setPage } from "~/store";
-import { ClosePageContext } from "~/context";
+import { ClosePageContext, OpenPageContext } from "~/context";
 
 interface StoreProps {}
 
@@ -21,12 +19,14 @@ const data = [...Array(9)].map(() => ({
 
 export default function Store({}: StoreProps) {
   const closePage = useContext(ClosePageContext);
+  const openPage = useContext(OpenPageContext);
   return (
     <Modal
       title="Магазин"
       subtitle="0 рублёв"
       className={styles.modal}
       onClose={() => closePage("store")}
+      refocus={() => openPage({ page: "store" })}
     >
       <div className={styles.content}>
         {data.map((item) => (

@@ -1,0 +1,24 @@
+.OpenedNavbarModal {
+  position: fixed;
+  padding: 5px 6px 8px 4px;
+  z-index: 100;
+  left: 6px;
+  bottom: 36px;
+  box-shadow: var(--windows-shadow);
+  background-color: var(--gray-background);
+  display: flex;
+  min-height: 233px;
+  gap: 7px;
+}
+.sidebar{
+  background-color: #808080;
+  padding: 0 7px 0 5px;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 25px;
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

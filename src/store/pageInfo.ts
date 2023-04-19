@@ -30,7 +30,6 @@ export interface PageInfo {
   page: AllPages;
   step?: (1 | 2 | "2+" | 3)[]; // for registration page
   id?: number; // for profile page
-  openedProfile?: number; // for people near
   openedChat?: number; // for messages
 }
 

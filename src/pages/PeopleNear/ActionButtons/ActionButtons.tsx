@@ -1,8 +1,8 @@
 import { Button } from "~/components";
 import styles from "./action-buttons.module.css";
 // Icons:
-import likeIcon from "~/assets/icons/like__people_near.svg";
-import dislikeIcon from "~/assets/icons/dislike__people_near.svg";
+import likeIcon from "~/assets/icons/peopleNear__page/like.svg";
+import dislikeIcon from "~/assets/icons/peopleNear__page/dislike.svg";
 
 interface ActionButtonsProps {
   dislike: Function;

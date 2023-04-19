@@ -1,1 +1,36 @@
-.navbar-button {}
+.navbarButton {
+  padding: 6px;
+  height: 29px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 150px;
+}
+.navbarButton .icon {
+  width: 21px;
+}
+.navbarButton .icon img {
+  display: block;
+  height: 100%;
+  margin: auto;
+}
+.navbarButton span {
+  display: block;
+  margin-left: 8px;
+}
+@media (max-width: 650px) {
+  .navbarButton span {
+    display: none;
+  }
+}
+@media (min-width: 1095px) {
+  .navbarButton {
+    width: 150px;
+  }
+}
+.navbarButton.fullWidth {
+  width: 150px;
+}
+.navbarButton.fullWidth span {
+  display: block;
+}

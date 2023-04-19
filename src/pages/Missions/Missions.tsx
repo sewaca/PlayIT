@@ -9,13 +9,14 @@ import MissionContent from "./MissionContent";
 import ActionButtons from "./ActionButtons";
 // BACKEND:
 import { acceptTask, getTask, GetTaskResponse } from "~/services/backend";
-import { ClosePageContext } from "~/context";
+import { ClosePageContext, OpenPageContext } from "~/context";
 
 export default function Missions() {
   const userId = useSelector<Store, number>((store) => store.user.id || 0);
   if (!userId) return null;
 
   const closePage = useContext(ClosePageContext);
+  const openPage = useContext(OpenPageContext);
 
   const [data, setData] = useState<GetTaskResponse[]>([]);
 
@@ -39,6 +40,7 @@ export default function Missions() {
     <Modal
       title="Задания"
       onClose={() => closePage("missions")}
+      refocus={() => openPage({ page: "missions" })}
       className={styles.modal}
       swipable
       onLeftSwipe={nextTask}

@@ -13,6 +13,8 @@ interface ModalProps {
   subtitle?: string;
   inactive?: boolean;
   className?: string;
+  // Funcion to refocus modal
+  refocus?: Function;
   // Swipable content:
   swipable?: boolean;
   onLeftSwipe?: Function;
@@ -23,14 +25,13 @@ interface ModalProps {
   [index: string]: any;
 }
 
-// TODO: Сделать логику "рефокуса"
-
 export default function Modal({
   children = null,
   onClose = () => {},
   title = "",
   subtitle = "",
   className = "",
+  refocus = () => {},
   inactive = false,
   swipable = false,
   onLeftSwipe,
@@ -47,8 +48,18 @@ export default function Modal({
   if (swipable) content = <SwipableContent>{content}</SwipableContent>;
   if (draggable) content = <DraggableContent>{content}</DraggableContent>;
 
+  const refocusHandlers = {
+    onMouseDown: () => refocus(),
+    onTouchStart: () => refocus(),
+  };
+
   return (
-    <div className={[styles.modal, className].join(" ")} {...rest}>
+    <div
+      className={[styles.modal, className].join(" ")}
+      onClick={() => refocus()}
+      onTouchStart={() => refocus()}
+      {...rest}
+    >
       {content}
     </div>
   );
