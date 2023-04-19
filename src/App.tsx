@@ -1,14 +1,19 @@
 import { Provider } from "react-redux";
 import { Background, Navbar } from "~/components/";
 import { store } from "~/store/";
-import Routes from "./Routes";
+import Routes from "~/features/Routes";
+import { OpenPage, ClosePage } from "~/context";
 
 function App() {
   return (
     <Provider store={store}>
-      <Background />
-      <Navbar />
-      <Routes />
+      <OpenPage>
+        <ClosePage>
+          <Background />
+          <Navbar />
+          <Routes />
+        </ClosePage>
+      </OpenPage>
     </Provider>
   );
 }

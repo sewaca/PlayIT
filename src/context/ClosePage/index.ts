@@ -1,0 +1,1 @@
+export { default as ClosePage, ClosePageContext } from './ClosePage'

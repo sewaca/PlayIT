@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userInfoReducer, UserInfoState } from "./userInfo";
-import { PageInfoState, pageReducer } from "./pageInfo";
+import {
+  PageInfo as PageInfoState,
+  OpenedPagesInfo,
+  pageReducer,
+} from "./pageInfo";
 
 export interface Store {
   user: UserInfoState;
-  page: PageInfoState;
+  page: OpenedPagesInfo;
 }
 
 export const store = configureStore<Store>({
@@ -14,5 +18,12 @@ export const store = configureStore<Store>({
   },
 });
 
-export { setPage, type PageInfoState } from "./pageInfo";
+export {
+  setPage,
+  openPage,
+  closePage,
+  type PageInfo as PageInfoState,
+  type AllPages as Page,
+  type OpenedPagesInfo,
+} from "./pageInfo";
 export { setUserData, type UserInfoState } from "./userInfo";

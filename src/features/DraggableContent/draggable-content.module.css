@@ -1,7 +1,8 @@
 .container {
   position: relative;
-  will-change: transform;
+  will-change: top, left;
   max-height: inherit;
+  pointer-events: all;
 }
 .headerCover {
   position: absolute;

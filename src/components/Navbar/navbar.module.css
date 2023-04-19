@@ -16,5 +16,9 @@
 	height: 29px;
 }
 .bigButton {
-	width: 25.27%;
+	width: 123px;
+	padding: 7px 10px 7px 8px;
+}
+.bigButton img {
+	width: 100%;
 }

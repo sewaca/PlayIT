@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal } from "~/components";
 import styles from "./store.module.css";
 import StoreItem from "./StoreItem/StoreItem";
 import { useDispatch } from "react-redux";
 import { setPage } from "~/store";
+import { ClosePageContext } from "~/context";
 
 interface StoreProps {}
 
@@ -19,13 +20,13 @@ const data = [...Array(9)].map(() => ({
 }));
 
 export default function Store({}: StoreProps) {
-  const dispatch = useDispatch();
+  const closePage = useContext(ClosePageContext);
   return (
     <Modal
       title="Магазин"
       subtitle="0 рублёв"
       className={styles.modal}
-      onClose={() => dispatch(setPage({ page: "" }))}
+      onClose={() => closePage("store")}
     >
       <div className={styles.content}>
         {data.map((item) => (

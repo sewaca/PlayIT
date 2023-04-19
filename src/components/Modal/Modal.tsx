@@ -1,4 +1,4 @@
-import { ReactNode, SetStateAction, useMemo, useState } from "react";
+import { ReactNode } from "react";
 import SwipableContent from "../../features/SwipableContent";
 import styles from "./modal.module.css";
 import ModalContent from "./ModalContent";
@@ -22,6 +22,8 @@ interface ModalProps {
   // Other ...
   [index: string]: any;
 }
+
+// TODO: Сделать логику "рефокуса"
 
 export default function Modal({
   children = null,

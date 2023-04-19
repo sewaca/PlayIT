@@ -2,6 +2,7 @@
   overflow: hidden;
   position: relative;
   display: flex;
+  pointer-events: all;
   flex-direction: column;
 }
 .wrapper {

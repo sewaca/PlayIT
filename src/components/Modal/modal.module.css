@@ -3,6 +3,7 @@
   min-width: 250px;
   max-width: 330px;
   max-height: 81.802vh;
+  pointer-events: none;
 }
 .background {
   display: flex;
@@ -12,6 +13,7 @@
   background: #bfbfbf;
   padding: 3px;
   max-height: inherit;
+  pointer-events: all;
 }
 
 .background *{

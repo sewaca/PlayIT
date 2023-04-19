@@ -1,6 +1,8 @@
 import { Modal, Button } from "~/components";
 import logo from "~/assets/images/registration_logo.svg";
 import styles from "../../registration-modal.module.css";
+import { useDispatch } from "react-redux";
+import { setPage } from "~/store";
 
 interface Step1Props {}
 
@@ -13,10 +15,13 @@ export default function Step1({}: Step1Props) {
     window.location.href = url;
   };
 
+  const dispatch = useDispatch();
+
   return (
     <Modal
       title="Регистрация"
       className={[styles.regModal, styles.step1].join(" ")}
+      onClose={() => dispatch(setPage({ page: "" }))}
     >
       <div style={{ paddingBottom: "13px" }}>
         <img src={logo} />

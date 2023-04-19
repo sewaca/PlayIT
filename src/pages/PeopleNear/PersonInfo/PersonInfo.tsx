@@ -3,21 +3,21 @@ import { setPage } from "~/store";
 import { GetPeopleNearResponse } from "~/services/backend";
 import { Button } from "~/components";
 import styles from "./person-info.module.css";
+import { useContext } from "react";
+import { OpenPageContext } from "~/context";
 
 interface PersonInfoProps {
   data: GetPeopleNearResponse;
 }
 
 export default function PersonInfo({ data }: PersonInfoProps) {
-  const dispatch = useDispatch();
+  const openPage = useContext(OpenPageContext);
   return (
     <>
       <Button
         withPadding={false}
         className={styles.avatar}
-        onClick={() =>
-          dispatch(setPage({ page: "peopleNear", openedProfile: data.id }))
-        }
+        onClick={() => openPage({ page: "peopleNear", openedProfile: data.id })}
       >
         <img src={data.avatar} />
       </Button>

@@ -1,7 +1,7 @@
 // REACT & REDUX:
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { setPage, Store } from "~/store";
+import { useContext, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Store } from "~/store";
 // Components & styles
 import styles from "./missions.module.css";
 import { Modal } from "~/components";
@@ -9,12 +9,13 @@ import MissionContent from "./MissionContent";
 import ActionButtons from "./ActionButtons";
 // BACKEND:
 import { acceptTask, getTask, GetTaskResponse } from "~/services/backend";
+import { ClosePageContext } from "~/context";
 
 export default function Missions() {
   const userId = useSelector<Store, number>((store) => store.user.id || 0);
   if (!userId) return null;
 
-  const dispatch = useDispatch();
+  const closePage = useContext(ClosePageContext);
 
   const [data, setData] = useState<GetTaskResponse[]>([]);
 
@@ -37,7 +38,7 @@ export default function Missions() {
   return (
     <Modal
       title="Задания"
-      onClose={() => dispatch(setPage({ page: "" }))}
+      onClose={() => closePage("missions")}
       className={styles.modal}
       swipable
       onLeftSwipe={nextTask}

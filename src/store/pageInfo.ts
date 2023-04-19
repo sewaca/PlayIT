@@ -1,32 +1,15 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
+import { pushHistoryStatePage } from "~/utils/routing";
 
-// Page types :
-interface EmptyPage {
-  page: "";
-}
-interface RegistrationPage {
-  page: "registration";
-  step?: (1 | 2 | "2+" | 3)[];
-}
-interface ProfilePage {
-  page: "profile";
-  id: number;
-}
-interface PeopleNearPage {
-  page: "peopleNear";
-  openedProfile?: number;
-}
-interface MissionsPage {
-  page: "missions";
-}
-interface StorePage {
-  page: "store";
-}
-interface MessagesPage {
-  page: "messages";
-  openedChat?: number;
-}
-export type PageInfoState =
+// TYPES & INTERFACES :
+type EmptyPage = "";
+type RegistrationPage = "registration";
+type ProfilePage = "profile";
+type PeopleNearPage = "peopleNear";
+type MissionsPage = "missions";
+type StorePage = "store";
+type MessagesPage = "messages";
+export type AllPages =
   | RegistrationPage
   | EmptyPage
   | ProfilePage
@@ -34,28 +17,66 @@ export type PageInfoState =
   | MissionsPage
   | StorePage
   | MessagesPage;
+
+export interface OpenedPagesInfo {
+  page: Array<AllPages>;
+  step?: (1 | 2 | "2+" | 3)[]; // for registration page
+  id?: number; // for profile page
+  openedProfile?: number; // for people near
+  openedChat?: number; // for messages
+}
+
+export interface PageInfo {
+  page: AllPages;
+  step?: (1 | 2 | "2+" | 3)[]; // for registration page
+  id?: number; // for profile page
+  openedProfile?: number; // for people near
+  openedChat?: number; // for messages
+}
+
 // ACTIONS:
-export const setPage = createAction<PageInfoState>("setPageInfo");
+export const setPage = createAction<PageInfo>("setPageInfo");
+export const closePage = createAction<AllPages>("closePage");
+export const openPage = createAction<PageInfo>("openPage");
 // Initial State
-const initialState: PageInfoState = {
-  page: "",
-};
+const initialState: OpenedPagesInfo = { page: [""] };
 // Reducer
-export const pageReducer = createReducer<PageInfoState>(
+export const pageReducer = createReducer<OpenedPagesInfo>(
   initialState,
   (builder) => {
-    builder.addCase(setPage, (state, action) => {
-      const origin = window.location.origin;
-      const page = action.payload.page;
-      let url = `${origin}/${page}`;
-      if (page === "profile") url += "/" + action.payload.id;
-      if (page === "peopleNear" && action.payload.openedProfile)
-        url += "/" + action.payload.openedProfile;
-      if (page === "messages" && action.payload.openedChat)
-        url += "/" + action.payload.openedChat;
-      window.history.pushState({ page: action.payload.page }, "", url);
+    builder
+      .addCase(setPage, (state, action) => {
+        pushHistoryStatePage({
+          page: action.payload.page,
+          payload: action.payload,
+        });
 
-      return action.payload;
-    });
+        return { ...action.payload, page: [action.payload.page] };
+      })
+      .addCase(closePage, (state, action) => {
+        const pages = state.page.filter((item) => item !== action.payload);
+        pushHistoryStatePage({
+          page: pages.slice(-1)[0] || "",
+          payload: { ...state },
+        });
+        return {
+          ...state,
+          page: pages,
+        };
+      })
+      .addCase(openPage, (state, action) => {
+        pushHistoryStatePage({
+          page: action.payload.page,
+          payload: action.payload,
+        });
+
+        return {
+          ...state,
+          ...action.payload,
+          page: [
+            ...new Set([...state.page, action.payload.page].reverse()),
+          ].reverse(),
+        };
+      });
   }
 );

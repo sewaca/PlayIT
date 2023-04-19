@@ -1,11 +1,6 @@
 FROM node:current-alpine
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install --silent
-COPY . ./
-
-RUN npm run build
+COPY ./dist ./dist
 RUN npm i -g serve concurrently lcp
-CMD ["concurrently", "\"npm run proxy\"", "\"serve -s dist\""]
+CMD ["concurrently", "\"lcp --proxyUrl https://api.vk.com/\"", "\"serve -s dist\""]

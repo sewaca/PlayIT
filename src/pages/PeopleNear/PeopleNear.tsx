@@ -8,6 +8,8 @@ import { Modal } from "~/components/";
 import PersonInfo from "./PersonInfo";
 import ActionButtons from "./ActionButtons";
 // BACKEND:
+import { useContext } from "react";
+import { ClosePageContext } from "~/context";
 import {
   getPeopleNear,
   GetPeopleNearResponse,
@@ -26,7 +28,7 @@ export default function PeopleNear({}: PeopleNearProps) {
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<GetPeopleNearResponse[]>([]);
-  const dispatch = useDispatch();
+  const closePage = useContext(ClosePageContext);
 
   // ~ Функции
   // Показываем следующего пользователя и сразу подгружаем еще одного
@@ -73,7 +75,7 @@ export default function PeopleNear({}: PeopleNearProps) {
       swipable
       onLeftSwipe={dislike}
       onRightSwipe={like}
-      onClose={() => dispatch(setPage({ page: "" }))}
+      onClose={() => closePage("peopleNear")}
     >
       <div className={styles.content}>
         {loading ? (

@@ -7,7 +7,7 @@ interface LikePersonProps {
 // TODO: Сделать нормальную типизацию ответа
 export function likePerson(props: LikePersonProps): Promise<unknown> {
   return fetch(origin + "peopleNear/like", {
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify(props),
   });
 }

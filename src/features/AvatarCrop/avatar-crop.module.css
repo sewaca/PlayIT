@@ -1,0 +1,27 @@
+.CropModal {
+	display: flex;
+	position: fixed;
+	top: 0;
+	left: 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, 0.6);
+	width: 100vw;
+	height: 100vh;
+}
+.CropModal .CropBlock {
+	max-width: 95vw;
+	max-height: calc(95vh - 40px);
+	overflow: hidden;
+}
+.CropBlock img {
+	height: 100%;
+}
+.buttonsLine {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}

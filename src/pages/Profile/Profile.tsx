@@ -9,6 +9,8 @@ import styles from "./profile.module.css";
 import { getUser, GetUserResponse } from "~/services/backend/";
 import ProfileProgress from "./ProfileProgress";
 import ProfileMainInfo from "./ProfileMainInfo";
+import { useContext } from "react";
+import { ClosePageContext } from "~/context";
 
 interface ProfileProps {
   id: number;
@@ -21,7 +23,7 @@ export default function Profile({ id, onClose = undefined }: ProfileProps) {
   const [loading, setLoading] = useState(true); // Идет ли загрузка
   const [data, setData] = useState<GetUserResponse | null>(null); // загруженные данные
 
-  const dispatch = useDispatch();
+  const closePage = useContext(ClosePageContext);
   const userId = useSelector<Store, number>((store) => store.user.id || 0);
 
   // При монтировании получаем инфу о пользователе
@@ -36,7 +38,7 @@ export default function Profile({ id, onClose = undefined }: ProfileProps) {
     <Modal
       title="Профиль"
       className={styles.modal}
-      onClose={onClose || (() => dispatch(setPage({ page: "" })))}
+      onClose={onClose || (() => closePage("profile"))}
     >
       <div className={styles.content}>
         {loading ? (

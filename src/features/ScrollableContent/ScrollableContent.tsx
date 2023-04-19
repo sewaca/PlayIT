@@ -28,7 +28,7 @@ export default function ScrollableContent({
   let thumbPress: false | TruePressedThumb = false; // false or cords of press on thumb
   let contentTouch: false | TruePressedThumb = false; // false or cords of touch on content
   let scroll: number = 0; // scrollTop on content
-  let viewport: number = 0; // % of visible content = (1 / scale) btw
+  let viewport: number = 1 / scale; // % of visible content = (1 / scale) btw
   const wheelScrollAmount = 16; // px of content scrolling per wheel scroll event
 
   // ! HELPERS:
@@ -97,8 +97,7 @@ export default function ScrollableContent({
 
       viewport = el.clientHeight / el.scrollHeight;
       if (thumb.current) thumb.current.style.height = viewport * 100 + "%";
-
-      // adding listeners on window, to prevent case when user moves mouse out of thumb and scroll's stopping
+      
       window.addEventListener("mousemove", handleThumbMouseMove);
       window.addEventListener("touchmove", handleThumbTouchMove);
       window.addEventListener("mouseup", endThumbTouch);
@@ -111,7 +110,7 @@ export default function ScrollableContent({
         window.removeEventListener("touchend", endThumbTouch);
       };
     } else setIsScrollable(false);
-  }, [thumb.current, content.current]);
+  }, [content.current, thumb.current]);
 
   return (
     <div
@@ -137,7 +136,7 @@ export default function ScrollableContent({
           <Button
             withPadding={false}
             className={styles.scrollButton}
-            onClick={() => scrollContent(-10)}
+            onClick={() => scrollContent(-wheelScrollAmount)}
           >
             <img src={top} />
           </Button>
@@ -162,7 +161,7 @@ export default function ScrollableContent({
           <Button
             withPadding={false}
             className={styles.scrollButton}
-            onClick={() => scrollContent(10)}
+            onClick={() => scrollContent(wheelScrollAmount)}
           >
             <img src={bottom} />
           </Button>

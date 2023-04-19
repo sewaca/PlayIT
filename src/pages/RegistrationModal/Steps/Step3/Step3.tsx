@@ -5,6 +5,7 @@ import styles from "../../registration-modal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setPage, setUserData, Store, UserInfoState } from "~/store";
 import { ChangeEvent } from "react";
+import { changeUser, registerUser } from "~/services/backend";
 
 export default function Step3() {
   const dispatch = useDispatch();
@@ -46,6 +47,19 @@ export default function Step3() {
           className={styles.button}
           onClick={() => {
             dispatch(setPage({ page: "profile", id: user.id as number }));
+            registerUser({
+              id: user.id || 0,
+              name: {
+                first: user.name?.first || "",
+                second: user.name?.second || "",
+              },
+              avatar: user.avatar || "",
+              faculty: user.faculty || "",
+              age: user.age || 0,
+              aboutme: user.aboutme || "",
+              status: user.status || "",
+              interests: user.interests || "",
+            });
           }}
         >
           Зарегистрироваться

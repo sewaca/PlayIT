@@ -52,7 +52,8 @@ export default function DraggableContent({ children }: DraggableContentProps) {
       className={styles.container}
       style={{
         transition: "0s",
-        transform: `translate3d(${pos.x}px, ${pos.y}px, 0px)`,
+        top: `${pos.y}px`,
+        left: `${pos.x}px`,
       }}
     >
       <div className={styles.headerCover} {...draggableHandlers} />

@@ -67,6 +67,7 @@ export default function SwipableContent({
     }deg)`;
 
     return {
+      pointerEvents: "all",
       transform,
       transformOrigin,
       transition: "0s",
