@@ -17,15 +17,13 @@ interface ChangeUserProps {
 export const changeUser = (params: ChangeUserProps) =>
   fetch(origin + "user/change", {
     method: "PUT",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
     body: JSON.stringify({
       id: params.id,
-      fname: params.name?.first || null,
-      lname: params.name?.second || null,
-      avatar: params.avatar || null,
-      fak: params.faculty || null,
-      age: params.age || null,
-      status: params.status || null,
-      about: params.aboutme || null,
-      interests: params.interests || null,
+      status: params.status || "",
+      about: params.aboutme || "",
+      interests: params.interests || "",
     }),
   });

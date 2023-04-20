@@ -5,10 +5,7 @@ export function pathToEvent(): PageInfoState {
 
   // Люди рядом
   if (path.includes("/peopleNear"))
-    return {
-      page: "peopleNear",
-      openedProfile: parseInt(path.replace("/peopleNear/", "")) || undefined,
-    };
+    return { page: "peopleNear", };
   // Профиль пользователя
   if (path.includes("/profile/"))
     return parseInt(path.replace("/profile/", ""))

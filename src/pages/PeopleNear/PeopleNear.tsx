@@ -14,6 +14,7 @@ import {
   getPeopleNear,
   GetPeopleNearResponse,
   likePerson,
+  dislikePerson,
 } from "~/services/backend/";
 
 // TODO: Следует декомпозировать да и просто прибраться тут
@@ -60,6 +61,8 @@ export default function PeopleNear({}: PeopleNearProps) {
   };
 
   const dislike = () => {
+    if (data.length === 0) return;
+    dislikePerson({ id: userId, disliked: data[0].id });
     nextOffer();
   };
 

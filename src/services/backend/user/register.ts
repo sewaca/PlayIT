@@ -17,10 +17,14 @@ interface RegisterUserProps {
 export const registerUser = (data: RegisterUserProps) =>
   fetch(origin + "user/register", {
     method: "POST",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
     body: JSON.stringify({
       id: data.id,
       fname: data.name.first,
       lname: data.name.second,
+      // TODO: Сделать аватар
       avatar: "", // URL
       fak: data.faculty,
       age: data.age,

@@ -17,7 +17,10 @@ export default function PersonInfo({ data }: PersonInfoProps) {
       <Button
         withPadding={false}
         className={styles.avatar}
-        onClick={() => openPage({ page: "profile", id: data.id })}
+        onClick={(e: MouseEvent) => {
+          e.stopPropagation();
+          openPage({ page: "profile", id: data.id });
+        }}
       >
         <img src={data.avatar} />
       </Button>

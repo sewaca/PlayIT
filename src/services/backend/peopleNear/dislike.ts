@@ -1,12 +1,12 @@
 import { origin } from "..";
 
-interface LikePersonProps {
+interface DislikePersonProps {
   id: number;
-  liked: number;
+  disliked: number;
 }
 // TODO: Сделать нормальную типизацию ответа
-export function likePerson(props: LikePersonProps): Promise<unknown> {
-  return fetch(origin + "peopleNear/like", {
+export function dislikePerson(props: DislikePersonProps): Promise<unknown> {
+  return fetch(origin + "peopleNear/dislike", {
     method: "PUT",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
