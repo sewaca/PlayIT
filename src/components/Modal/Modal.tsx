@@ -45,7 +45,7 @@ export default function Modal({
       <ModalContent {...{ children }} />
     </div>
   );
-  if (swipable) content = <SwipableContent>{content}</SwipableContent>;
+  if (swipable) content = <SwipableContent {...{onLeftSwipe, onRightSwipe}}>{content}</SwipableContent>;
   if (draggable) content = <DraggableContent>{content}</DraggableContent>;
 
   const refocusHandlers = {

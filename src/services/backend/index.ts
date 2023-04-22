@@ -1,4 +1,4 @@
-export const origin = "http://localhost:821/";
+export const origin = "http://localhost:";
 
 // User:
 export { checkUser } from "./user/check";
@@ -10,5 +10,4 @@ export { registerUser } from "./user/register";
 export * from "./peopleNear/";
 
 // Missions:
-export { getTask, type GetTaskResponse } from "./tasks/get";
-export { acceptTask } from "./tasks/accept";
+export * from "./tasks/";

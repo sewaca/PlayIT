@@ -1,17 +1,26 @@
 .progressSection {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	align-items: center;
-	margin-bottom: 11px;
-	gap: 9px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  margin-bottom: 11px;
+  gap: 9px;
 }
 .progressBar {
-	background: #dfdfdf;
-	width: 100%;
-	height: 15px;
-	font-size: 0px;
+  background: #dfdfdf;
+  width: 100%;
+  height: 15px;
+  font-size: 0px;
 }
 .progressFiller {
-	background: #b577da;
-	height: 100%;
+  background: #b577da;
+  height: 100%;
+}
+.fillDataModal {
+  min-width: 300px;
+}
+.fillDataModalContent {
+  padding: 7px 13px 13px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }

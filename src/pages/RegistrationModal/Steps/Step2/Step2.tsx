@@ -13,6 +13,10 @@ export default function Step2() {
   const dispatch = useDispatch();
   const [imageData, setImageData] = useState<undefined | string>(undefined);
 
+  if (user.avatar && errors.avatar) setErrors((errors)=>({...errors, avatar: ""}));
+  if (user.faculty && errors.faculty) setErrors((errors)=>({...errors, faculty: ""}));
+  if (user.age && errors.age) setErrors((errors)=>({...errors, age: ""}));
+
   // Валидация введенных данных и переход на следующий шаг регистрации
   const nextStep = () => {
     if (user.avatar && user.age && user.faculty) {
@@ -32,12 +36,21 @@ export default function Step2() {
         className={[styles.regModal, styles.step2].join(" ")}
         onClose={() => dispatch(setPage({ page: "registration", step: [1] }))}
       >
-        <div className={styles.container}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            nextStep();
+            return false;
+          }}
+          className={styles.container}
+          noValidate
+        >
           <p style={{ fontSize: 15, marginBottom: 24 }}>
             Привет, {user.name?.first} {user.name?.second}
           </p>
           <Input
             required
+            name="avatar"
             type="file"
             accept="image/jpg,image/jpeg,image/png"
             label="Прикрепить  фото профиля:"
@@ -82,10 +95,10 @@ export default function Step2() {
               );
             }}
           />
-          <Button className={styles.continueButton} onClick={nextStep}>
+          <Button className={styles.continueButton} onClick={nextStep} type="submit">
             Продолжить
           </Button>
-        </div>
+        </form>
       </Modal>
       {imageData ? (
         <AvatarCrop

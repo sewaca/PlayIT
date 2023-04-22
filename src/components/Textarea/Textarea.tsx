@@ -7,7 +7,7 @@ interface TextareaProps {
   className?: string;
   required?: boolean;
   error?: string;
-  value?: string | number | null;
+  value?: string | number;
   style?: CSSProperties;
   [index: string]: any;
 }
@@ -19,7 +19,7 @@ export default function Textarea({
   required = false,
   style = {},
   error = "",
-  value: defaultValue = null,
+  value = "",
   ...rest
 }: TextareaProps) {
   return (
@@ -33,7 +33,11 @@ export default function Textarea({
         </span>
       ) : null}
 
-      <textarea className={styles.input} {...{ placeholder, required, ...rest }} />
+      <textarea
+        className={styles.input}
+        value={value}
+        {...{ placeholder, required, ...rest }}
+      />
       <span className={styles.error}>{error}</span>
     </label>
   );

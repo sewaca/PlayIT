@@ -24,10 +24,11 @@ const randomUser = (cnter = 0) => {
   };
 };
 
+//!  LOCALHOST 8210
 const app = express();
 
 app.use(function (req, res, next) {
-  console.log("request on ", req.url);
+  console.log("request on http://localhost:8210", req.url);
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "*");
   res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
@@ -44,7 +45,45 @@ app.get("/user/check", (req, res) => {
   res.send(true);
 });
 
-app.get("/peopleNear/get", (req, res) => {
+//
+app.put("/user/change", (req, res) => {
+  console.log(
+    `| new data for user ${
+      req.body.id
+    } : { \n|   status: ${req.body.status.slice(
+      0,
+      90
+    )}, \n|   about : ${req.body.about.slice(
+      0,
+      90
+    )}, \n|   interests: ${req.body.interests.slice(0, 90)} \n| }`
+  );
+  res.sendStatus(200);
+});
+
+app.post("/user/register", (req, res) => {
+  res.sendStatus(200);
+});
+
+// start server
+app.listen(8210, () => {
+  console.log("https://localhost:8210/ port listening!");
+});
+
+// ! PEOPLE NEAR (localhost 8212)
+const app2 = express();
+
+app2.use(function (req, res, next) {
+  console.log("request on https://localhost:8212", req.url);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+app2.use(express.json());
+
+app2.get("/peopleNear/get", (req, res) => {
   const FILE_PATH = "./server/stats/peopleNearGetCount.json";
   let cnter = JSON.parse(fs.readFileSync(FILE_PATH)) || 0;
   cnter++;
@@ -62,14 +101,48 @@ app.get("/peopleNear/get", (req, res) => {
   }, 1000);
 });
 
-app.put("/peopleNear/like", (req, res) => {
+app2.put("/peopleNear/like", (req, res) => {
   console.log(`| ${req.body.id} liked ${req.body.liked}`);
 });
-app.put("/peopleNear/dislike", (req, res) => {
+app2.put("/peopleNear/dislike", (req, res) => {
   console.log(`| ${req.body.id} disliked ${req.body.disliked}`);
 });
 
-app.get("/tasks/get", (req, res) => {
+app2.listen(8212, () => {
+  console.log("https://localhost:8212/ port listening!");
+});
+
+// ! STORE (localhost:8214)
+const app3 = express();
+
+app3.use(function (req, res, next) {
+  console.log("request on https://localhost:8214", req.url);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+app3.use(express.json());
+
+app3.listen(8214, () => {
+  console.log("https://localhost:8214/ port listening!");
+});
+
+// ! MISSIONS (localhost:8215)
+const app4 = express();
+
+app4.use(function (req, res, next) {
+  console.log("request on https://localhost:8215", req.url);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+  res.header("Content-Type", "application/json;charset=utf-8");
+  next();
+});
+app4.use(express.json());
+
+app4.get("/tasks/get", (req, res) => {
   res.send({
     id: 1,
     difficulty: "легкий",
@@ -84,7 +157,13 @@ app.get("/tasks/get", (req, res) => {
   });
 });
 
-// start server
-app.listen(821, () => {
-  console.log("Application listening on port 821!");
+app4.put("/tasks/reject", (req) => {
+  console.log(`| user ${req.body.userId} rejected ${req.body.taskId}`);
+});
+app4.put("/tasks/accept", (req) => {
+  console.log(`| user ${req.body.userId} accepted ${req.body.taskId}`);
+});
+
+app4.listen(8215, () => {
+  console.log("https://localhost:8215/ port listening!");
 });

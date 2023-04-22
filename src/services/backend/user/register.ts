@@ -15,10 +15,10 @@ interface RegisterUserProps {
 }
 
 export const registerUser = (data: RegisterUserProps) =>
-  fetch(origin + "user/register", {
+  fetch(origin + "8210/user/register", {
     method: "POST",
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       id: data.id,
@@ -32,4 +32,4 @@ export const registerUser = (data: RegisterUserProps) =>
       about: data.aboutme,
       interests: data.interests,
     }),
-  });
+  }).then(() => localStorage.setItem("userId", data.id.toString()));

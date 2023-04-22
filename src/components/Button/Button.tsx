@@ -22,6 +22,7 @@ export default function Button({
           withPadding ? styles.padding : "",
           className,
         ].join(" ")}
+        type={rest.type || "button"}
         {...rest}
       >
         {children}

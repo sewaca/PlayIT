@@ -10,6 +10,10 @@ export interface GetTaskResponse {
 }
 
 export const getTask = (userId: number) =>
-  fetch(origin + "tasks/get?id=" + userId)
+  fetch(origin + "8215/tasks/get?id=" + userId, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then((res) => res.json())
     .then((data) => data as GetTaskResponse);

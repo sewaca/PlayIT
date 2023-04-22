@@ -11,13 +11,38 @@ export default function Step3() {
   const dispatch = useDispatch();
   const user = useSelector<Store, UserInfoState>((store) => store.user);
 
+  const submitUser = () => {
+    dispatch(setPage({ page: "peopleNear" }));
+    registerUser({
+      id: user.id || 0,
+      name: {
+        first: user.name?.first || "",
+        second: user.name?.second || "",
+      },
+      avatar: user.avatar || "",
+      faculty: user.faculty || "",
+      age: user.age || 0,
+      aboutme: user.aboutme || "",
+      status: user.status || "",
+      interests: user.interests || "",
+    });
+  };
+
   return (
     <Modal
       title="Регистрация"
       className={[styles.regModal, styles.step3].join(" ")}
       onClose={() => dispatch(setPage({ page: "registration", step: [1, 2] }))}
     >
-      <div className={styles.container}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitUser();
+          return false;
+        }}
+        className={styles.container}
+        noValidate
+      >
         <Input
           label="Статус"
           className={styles.input}
@@ -43,28 +68,10 @@ export default function Step3() {
             dispatch(setUserData({ interests: e.target.value }))
           }
         />
-        <Button
-          className={styles.button}
-          onClick={() => {
-            dispatch(setPage({ page: "profile", id: user.id as number }));
-            registerUser({
-              id: user.id || 0,
-              name: {
-                first: user.name?.first || "",
-                second: user.name?.second || "",
-              },
-              avatar: user.avatar || "",
-              faculty: user.faculty || "",
-              age: user.age || 0,
-              aboutme: user.aboutme || "",
-              status: user.status || "",
-              interests: user.interests || "",
-            });
-          }}
-        >
+        <Button className={styles.button} onClick={submitUser} type="submit">
           Зарегистрироваться
         </Button>
-      </div>
+      </form>
     </Modal>
   );
 }

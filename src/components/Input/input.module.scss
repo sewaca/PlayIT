@@ -27,6 +27,13 @@
   gap: 8px;
 }
 
+.fileName {
+  white-space: nowrap;
+  max-width: 140px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .error {
   color: #900;
 }

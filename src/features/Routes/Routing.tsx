@@ -33,8 +33,13 @@ export default function Routes({}: RoutingProps) {
         .then((data) => {
           dispatch(setUserData(data));
           checkUser(data.id).then((res) => {
-            if (res) dispatch(setPage({ page: "profile", id: data.id }));
-            else dispatch(setPage({ page: "registration", step: [1, 2] }));
+            if (res) {
+              localStorage.setItem("userId", data.id.toString());
+              dispatch(setPage({ page: "profile", id: data.id }));
+            } else {
+              localStorage.setItem("userId", "");
+              dispatch(setPage({ page: "registration", step: [1, 2] }));
+            }
           });
         })
         // TODO: should catch it
@@ -42,13 +47,19 @@ export default function Routes({}: RoutingProps) {
       return;
     }
     if (!user.id) {
+      localStorage.setItem("userId", "");
       dispatch(setPage({ page: "registration", step: [1] }));
       return;
     }
     checkUser(user.id)
       .then((res) => {
-        if (res) dispatch(setPage(pathToEvent()));
-        else dispatch(setPage({ page: "registration", step: [1, 2] }));
+        if (res) {
+          localStorage.setItem("userId", (user.id || 0).toString());
+          dispatch(setPage(pathToEvent()));
+        } else {
+          localStorage.setItem("userId", "");
+          dispatch(setPage({ page: "registration", step: [1] }));
+        }
       })
       .catch(() => dispatch(setPage({ page: "registration", step: [1] })));
   }, []);

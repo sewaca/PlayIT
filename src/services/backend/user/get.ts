@@ -17,7 +17,11 @@ export interface GetUserResponse {
 }
 
 export const getUser = (id: number) =>
-  fetch(origin + "user/get?id=" + id)
+  fetch(origin + "8210/user/get?id=" + id, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then((res) => res.json())
     .then(
       (data) =>

@@ -18,7 +18,6 @@ interface ProfileProps {
 
 export default function Profile({ id }: ProfileProps) {
   if (!id) return <></>;
-
   const userId = useSelector<Store, number>((store) => store.user.id || 0);
   const [loading, setLoading] = useState(true); // Идет ли загрузка
   const [data, setData] = useState<GetUserResponse | null>(null); // загруженные данные
@@ -28,10 +27,15 @@ export default function Profile({ id }: ProfileProps) {
 
   // При монтировании получаем инфу о пользователе
   useEffect(() => {
-    getUser(id).then((res) => {
-      setLoading(false);
-      setData(res);
-    });
+    getUser(id)
+      .then((res) => {
+        setLoading(false);
+        setData(res);
+      })
+      .catch(() => {
+        setLoading(false);
+        setData(null);
+      });
   }, []);
 
   return (
@@ -49,7 +53,7 @@ export default function Profile({ id }: ProfileProps) {
             {/* Основная информация профиля */}
             <ProfileMainInfo data={data} />
             {/* Прогресс заполнения профиля */}
-            {data.id === userId && <ProfileProgress progress={data.progress} />}
+            {data.id === userId && <ProfileProgress setData={setData} data={data} />}
             {/* Обо мне */}
             {data.aboutme && <p className={styles.aboutme}>{data.aboutme}</p>}
             {/* Дополнительные поля */}

@@ -66,7 +66,7 @@ export const pageReducer = createReducer<OpenedPagesInfo>(
       .addCase(openPage, (state, action) => {
         pushHistoryStatePage({
           page: action.payload.page,
-          payload: action.payload,
+          payload: { ...state, ...action.payload },
         });
 
         return {

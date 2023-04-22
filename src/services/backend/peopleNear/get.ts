@@ -12,7 +12,7 @@ export interface GetPeopleNearResponse {
 }
 
 export function getPeopleNear(id: number): Promise<GetPeopleNearResponse> {
-  return fetch(origin + "peopleNear/get?id=" + id)
+  return fetch(origin + "8212/peopleNear/get?id=" + id)
     .then((res) => res.json())
     .then((data) => ({
       id: data.id,

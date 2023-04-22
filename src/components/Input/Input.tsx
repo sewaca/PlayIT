@@ -52,7 +52,7 @@ export default function Input({
             }}
           />
           <Button onClick={() => ref.current?.click()}>Выбрать файл</Button>
-          <span>
+          <span className={styles.fileName}>
             {Array.isArray(value) && value.length
               ? value[0].name
               : "Файл не выбран"}

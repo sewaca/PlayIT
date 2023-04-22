@@ -22,7 +22,6 @@ const initialState: UserInfoState = {
 export const userInfoReducer = createReducer(initialState, (builder) => {
   builder.addCase(setUserData, (state, action) => {
     const newState = { ...state, ...action.payload };
-    localStorage.setItem("userId", (newState.id || 0).toString());
     return newState;
   });
 });

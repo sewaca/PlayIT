@@ -8,7 +8,12 @@ import { Modal } from "~/components";
 import MissionContent from "./MissionContent";
 import ActionButtons from "./ActionButtons";
 // BACKEND:
-import { acceptTask, getTask, GetTaskResponse } from "~/services/backend";
+import {
+  acceptTask,
+  getTask,
+  GetTaskResponse,
+  rejectTask,
+} from "~/services/backend";
 import { ClosePageContext, OpenPageContext } from "~/context";
 
 export default function Missions() {
@@ -31,6 +36,10 @@ export default function Missions() {
     acceptTask(id, userId);
     nextTask();
   }
+  function reject(id: number) {
+    rejectTask(id, userId);
+    nextTask();
+  }
 
   useEffect(() => {
     getData().then(getData);
@@ -43,8 +52,8 @@ export default function Missions() {
       refocus={() => openPage({ page: "missions" })}
       className={styles.modal}
       swipable
-      onLeftSwipe={nextTask}
-      onRightSwipe={accept}
+      onLeftSwipe={() => (data.length ? reject(data[0].id) : null)}
+      onRightSwipe={() => (data.length ? accept(data[0].id) : null)}
     >
       <div className={styles.content}>
         {!data.length ? (
@@ -54,7 +63,7 @@ export default function Missions() {
             <MissionContent data={data[0]} />
             <ActionButtons
               accept={() => accept(data[0].id)}
-              reject={nextTask}
+              reject={() => reject(data[0].id)}
             />
           </>
         )}

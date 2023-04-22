@@ -6,10 +6,10 @@ interface DislikePersonProps {
 }
 // TODO: Сделать нормальную типизацию ответа
 export function dislikePerson(props: DislikePersonProps): Promise<unknown> {
-  return fetch(origin + "peopleNear/dislike", {
+  return fetch(origin + "8212/peopleNear/dislike", {
     method: "PUT",
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(props),
   });
