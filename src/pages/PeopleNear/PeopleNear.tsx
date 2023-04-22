@@ -9,7 +9,11 @@ import PersonInfo from "./PersonInfo";
 import ActionButtons from "./ActionButtons";
 // BACKEND:
 import { useContext } from "react";
-import { ClosePageContext, OpenPageContext } from "~/context";
+import {
+  ClosePageContext,
+  OpenPageContext,
+  CreateErrorContext,
+} from "~/context";
 import {
   getPeopleNear,
   GetPeopleNearResponse,
@@ -33,6 +37,7 @@ export default function PeopleNear({}: PeopleNearProps) {
 
   const closePage = useContext(ClosePageContext);
   const openPage = useContext(OpenPageContext);
+  const createError = useContext(CreateErrorContext);
 
   // ~ Функции
   // Показываем следующего пользователя и сразу подгружаем еще одного
@@ -56,8 +61,16 @@ export default function PeopleNear({}: PeopleNearProps) {
   // Функции, срабатывающие при лайке/дизлайке профиля
   const like = () => {
     if (data.length === 0) return;
-    likePerson({ id: userId, liked: data[0].id });
-    nextOffer();
+    likePerson({ id: userId, liked: data[0].id })
+      .then((res) => res.json())
+      .then((data: boolean) => {
+        if (data) nextOffer();
+        else
+          createError({
+            title: "Ошибка",
+            text: "У вас закончились лайки. Возвращайтесь завтра",
+          });
+      });
   };
 
   const dislike = () => {

@@ -5,9 +5,9 @@ interface LikePersonProps {
   liked: number;
 }
 // TODO: Сделать нормальную типизацию ответа
-export function likePerson(props: LikePersonProps): Promise<unknown> {
+export function likePerson(props: LikePersonProps) {
   return fetch(origin + "8212/peopleNear/like", {
-    method: "PUT",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },

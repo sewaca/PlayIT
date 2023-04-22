@@ -101,8 +101,13 @@ app2.get("/peopleNear/get", (req, res) => {
   }, 1000);
 });
 
-app2.put("/peopleNear/like", (req, res) => {
+app2.post("/peopleNear/like", (req, res) => {
+  const answer = true;
   console.log(`| ${req.body.id} liked ${req.body.liked}`);
+  console.log(
+    `| ${answer ? "user still have likes" : "user have no more likes"}`
+  );
+  res.send(answer);
 });
 app2.put("/peopleNear/dislike", (req, res) => {
   console.log(`| ${req.body.id} disliked ${req.body.disliked}`);
